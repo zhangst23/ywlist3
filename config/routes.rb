@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'lists#index'
 
-
+  get 'tags/:tag', to: 'lists#index', as: :tag
 
 
 

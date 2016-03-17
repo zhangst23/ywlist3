@@ -3,9 +3,13 @@
   <div class="col-md-8">
 
 	<div class="panel panel-default">
-	  <div class="panel-heading"><%= @list.title %></div>
+	  <div class="panel-heading">
+	  	<%= @list.title %>
 	  <div class="panel-body">
 	    <%= @list.content %>
+	  </div>
+	  <div class="panel-footer">
+	  	标签: <%= raw @list.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 	  </div>
 	</div>
 

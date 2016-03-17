@@ -1,10 +1,25 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :tag_cloud
+
+  def tag_cloud
+    @tags = List.tag_counts_on(:tags).order('count desc').limit(20)
+  end
+
+
+
+
+
+
 
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all.order("created_at DESC")
+    if params[:tag]
+      @lists = List.tagged_with(params[:tag]).order(created_at: :desc)
+    else
+      @lists = List.all.order(created_at: :desc)
+    end
   end
 
   # GET /lists/1
@@ -69,6 +84,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:title, :content)
+      params.require(:list).permit(:title, :content, :tag_list)
     end
 end

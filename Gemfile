@@ -29,7 +29,7 @@ gem "bootstrap-sass"
 
 gem 'devise'
 
-
+gem 'acts-as-taggable-on', '~> 3.4'
 
 
 

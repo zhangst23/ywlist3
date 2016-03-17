@@ -23,6 +23,24 @@
 
     </div>
   </div>
+
+  <div class="container"> 
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">标签云</div>
+          <div class="panel-body">
+            <div id="tag_cloud">
+              <% tag_cloud(@tags, %w(s m l)) do |tag, css_class| %>
+                <%= link_to tag.name, tag_path(tag.name), :class => css_class %>
+              <% end %>
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+  </div>
+
 </div>
 </div>
 
