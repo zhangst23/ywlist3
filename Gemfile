@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 gem "bootstrap-sass"
 
-
+gem 'devise'
 
 
 
