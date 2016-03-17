@@ -1,12 +1,63 @@
-<%= simple_form_for(@list) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @list do |f| %>
+    <% if @list.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :content %>
-  </div>
+          <ul>
+          <% @list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="input-group">      
+      <%= f.input :title, placeholder: "填写清单标题" %>
+    </div>
+    <br>
+    
+    <div class="list-body"> 
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active list_write"><a href="#list_write" aria-controls="list_write" role="tab" data-toggle="tab">编辑</a></li>
+
+          <li role="presentation" class="list_preview"><a href="#list_preview" aria-controls="list_preview" role="tab" data-toggle="tab" data-behaviors="preview">预览</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="field tab-pane active" id="list_write">
+            <%= f.input :content, class: "form-control", rows: "8", tabindex: "1", placeholder: "这里填写清单内容" %>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="list_preview">
+            #
+          </div> 
+        </div>
+    </div> 
+    <br>
+
+    <div class="actions">
+      <%= f.submit :创建, class: "btn btn-primary" %>
+    </div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

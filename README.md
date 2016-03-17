@@ -8,7 +8,8 @@ rails g devise User
 rails g devise:views
 ***
 rails g scaffold list title:string content:text 
-
+rake db:migrate
+***
 
 
 
