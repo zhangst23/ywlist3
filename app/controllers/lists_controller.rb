@@ -2,13 +2,11 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
   before_action :tag_cloud
 
+  # require 'will_paginate/array' 
+  
   def tag_cloud
     @tags = List.tag_counts_on(:tags).order('count desc').limit(20)
   end
-
-
-
-
 
 
 
@@ -16,10 +14,11 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if params[:tag]
-      @lists = List.tagged_with(params[:tag]).order(created_at: :desc)
+      @lists = List.tagged_with(params[:tag])
     else
-      @lists = List.all.order(created_at: :desc)
+      @lists = List.all
     end
+    @lists = @lists.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   # GET /lists/1
